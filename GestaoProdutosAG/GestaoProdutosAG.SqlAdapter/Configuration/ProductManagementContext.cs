@@ -22,5 +22,8 @@ namespace GestaoProdutosAG.DbAdapter.Configuration
 
         public DbSet<Product> Products { get; set; }
 
+        protected override void OnConfiguring(
+            DbContextOptionsBuilder optionsBuilder) =>
+            optionsBuilder.UseSqlite("DataSource=app.db;Cache=Shared");
     }
 }

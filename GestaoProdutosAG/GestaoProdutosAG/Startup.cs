@@ -29,7 +29,7 @@ namespace GestaoProdutosAG
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GestaoProdutosAG", Version = "v1" });
             });
 
-            services.AddDbContext<ProductManagementContext>(opt => opt.UseInMemoryDatabase("ProductManagementDb"));
+            services.AddDbContext<ProductManagementContext>(opt => opt.UseSqlite("app.db"));
             services.AddAutoMapper(typeof(Startup), typeof(ApiMapperProfile));
             ApplicationDependencyInjection.RegisterServices(services);
             AdaptersDependencyInjection.RegisterServices(services);
