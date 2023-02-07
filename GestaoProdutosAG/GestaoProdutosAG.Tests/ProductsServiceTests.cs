@@ -1,55 +1,42 @@
-﻿using System;
+﻿using GestaoProdutosAG.Application;
+using GestaoProdutosAG.Domain.Adapters;
+using GestaoProdutosAG.Domain.Models;
+using GestaoProdutosAG.Domain.Services;
+using GestaoProdutosAG.SqlAdapter;
+using System;
 using Xunit;
 
 namespace GestaoProdutosAG.Tests
 {
     public class ProductsServiceTests
     {
-        //[Fact]
-        //[Trait("AddProduct","Product")]
-        //public void AddProduct_ProdutsService_Success()
-        //{
-        //    //Arrange
-        //    var items = new List<Item>()
-        //    {
-        //        new Item(){
-        //            ItemName = "Produto"
-        //        }
-        //    };
+        [Fact]
+        [Trait("AddProduct", "Product")]
+        public void AddProduct_ProdutsService_Success()
+        {
+            //Arrange          
+            var product = new Product();
 
-        //    Sale sale = new Sale()
-        //    {
-        //        Salesman = new Salesman()
-        //        {
-        //            Cpf = "123.321.123-98",
-        //            Name = "Vendedor 1",
-        //            Email = "vendedor1@email.com",
-        //            Telefone = "31 65487-9876"
-        //        },
-        //        Items = items,
-        //        DateOfSale = DateTime.Now
-        //    };
+            Moq.Mock<ProductDbAdapter> productDbAdapterMock = new Moq.Mock<ProductDbAdapter>();
+            productDbAdapterMock.Setup(x => x.Add(product));
+            IProductService productService = new ProductService(productDbAdapterMock.Object);
 
-        //    Moq.Mock<ISalesSqlAdapter> sqlAdapterMoq = new Moq.Mock<ISalesSqlAdapter>();
-        //    sqlAdapterMoq.Setup(x => x.AddSale(sale));
-        //    ISaleService saleService = new SaleService(sqlAdapterMoq.Object);
+            //Act
+            try
+            {
+                productService.AddProduct(product);
+            }
 
-        //    //Act
-        //    try
-        //    {
-        //        saleService.RegisterSale(sale);
-        //    }
-
-        //    //Assert
-        //    catch (Exception)
-        //    {
-        //        Assert.False(true);
-        //    }
-        //    finally
-        //    {
-        //        Assert.True(true);
-        //    }
-        //}
+            //Assert
+            catch (Exception)
+            {
+                Assert.False(true);
+            }
+            finally
+            {
+                Assert.True(true);
+            }
+        }
 
     }
 }

@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GestaoProdutosAG.Application\GestaoProdutosAG.Application.csproj" />
+    <ProjectReference Include="..\GestaoProdutosAG.SqlAdapter\GestaoProdutosAG.DbAdapter.csproj" />
+  </ItemGroup>
+
 </Project>
