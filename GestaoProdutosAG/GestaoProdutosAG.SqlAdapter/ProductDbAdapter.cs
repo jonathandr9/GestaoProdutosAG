@@ -1,6 +1,7 @@
 ﻿using GestaoProdutosAG.DbAdapter.Configuration;
 using GestaoProdutosAG.Domain.Adapters;
 using GestaoProdutosAG.Domain.Models;
+using System.Linq;
 
 namespace GestaoProdutosAG.SqlAdapter
 {
@@ -12,9 +13,17 @@ namespace GestaoProdutosAG.SqlAdapter
             _context = context;
         }
 
-        public void Add(Product product)
+        public Product GetProduct(int code)
+        {
+            return _context.Products.FirstOrDefault(p => p.Code == code);
+        }
+
+        public Product Add(Product product)
         {
             _context.Products.Add(product);
+            _context.SaveChanges();
+
+            return product;
         }
     }
 }

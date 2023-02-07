@@ -9,6 +9,7 @@ namespace GestaoProdutosAG.Domain.Adapters
 {
     public interface IProductDbAdapter
     {
-        void Add(Product product);
+        Product GetProduct(int code);
+        Product Add(Product product);
     }
 }

@@ -4,6 +4,7 @@ namespace GestaoProdutosAG.Domain.Services
 {
     public interface IProductService
     {
-        void AddProduct(Product product);
+        Product GetProductByCode(int productCode);
+        Product AddProduct(Product product);
     }
 }

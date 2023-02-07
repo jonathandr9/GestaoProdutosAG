@@ -14,12 +14,22 @@ namespace GestaoProdutosAG.Application
             _productDbAdapter = productDbAdapter;
         }
 
-        public void AddProduct(Product product)
+        public Product GetProductByCode(int productCode)
+        {
+            var result = _productDbAdapter.GetProduct(productCode);
+
+            if (result == null)
+                throw new InvalidOperationException($"Não econtrado produto com código {productCode}");
+
+            return result;
+        }
+
+        public Product AddProduct(Product product)
         {
             if (product.ManufacturingDate >= product.ExpirationDate)
-                throw new Exception("Data de Fabricação não pode ser maior que a Data de Validade!");
+                throw new ArgumentException("Data de Fabricação não pode ser maior que a Data de Validade!");
 
-            _productDbAdapter.Add(product);
+            return _productDbAdapter.Add(product);
         }
     }
 }
