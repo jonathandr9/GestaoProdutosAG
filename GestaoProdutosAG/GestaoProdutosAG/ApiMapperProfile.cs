@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GestaoProdutosAG.API.Dto;
+using GestaoProdutosAG.API.Models;
 using GestaoProdutosAG.Domain.Models;
 
 namespace GestaoProdutosAG.API

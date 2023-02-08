@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace GestaoProdutosAG.API.Dto
+namespace GestaoProdutosAG.API.Models
 {
-    public class ProductPost
+    public class ProductViewModel
     {
+        public int Codigo { get; set; }
         public string Descricao { get; set; }
         public bool Situacao { get; set; }
         public DateTime DataFabricacao { get; set; }

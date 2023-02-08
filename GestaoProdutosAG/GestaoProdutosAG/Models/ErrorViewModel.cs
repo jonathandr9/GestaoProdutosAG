@@ -1,4 +1,4 @@
-﻿namespace GestaoProdutosAG.API.Dto
+﻿namespace GestaoProdutosAG.API.Models
 {
     public class ErrorViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using GestaoProdutosAG.API.Dto;
+using GestaoProdutosAG.API.Models;
 using GestaoProdutosAG.Domain.Models;
 using GestaoProdutosAG.Domain.Services;
 using Microsoft.AspNetCore.Http;
