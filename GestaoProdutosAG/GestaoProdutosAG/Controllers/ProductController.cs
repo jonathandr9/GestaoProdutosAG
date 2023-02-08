@@ -142,13 +142,13 @@ namespace GestaoProdutosAG.Controllers
         [ProducesResponseType(typeof(ErrorViewModel), 400)]
         [ProducesResponseType(typeof(ErrorViewModel), 500)]
         [ProducesResponseType(typeof(ProductViewModel), 200)]
-        public IActionResult UpdateProduct(ProductPost productPost)
+        public IActionResult UpdateProduct(ProductViewModel productPost)
         {
             try
             {
                 var product = _mapper.Map<Product>(productPost);
 
-                var productReturn = _productService.AddProduct(product);
+                var productReturn = _productService.UpdateProduct(product);
 
                 return Ok(_mapper.Map<ProductViewModel>(productReturn));
             }

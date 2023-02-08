@@ -18,7 +18,8 @@ namespace GestaoProdutosAG.SqlAdapter
 
         public Product GetByCode(int code)
         {
-            return _context.Products.FirstOrDefault(p => p.Code == code);
+            return _context.Products.AsNoTracking()
+                .FirstOrDefault(p => p.Code == code);
         }
 
         public IEnumerable<Product> GetProductsList(
@@ -30,7 +31,7 @@ namespace GestaoProdutosAG.SqlAdapter
             int? vendorCNPJ,
             int pageNumber,
             int pageLength)
-        {                       
+        {
 
             IQueryable<Product> query = _context.Products;
 
@@ -45,7 +46,7 @@ namespace GestaoProdutosAG.SqlAdapter
 
             if (vendorCode != null)
                 query = query.Where(q => q.VendorCode == vendorCode);
-            
+
             if (vendorDescription != null)
                 query = query.Where(q => q.VendorDescription.Contains(vendorDescription));
 
@@ -72,8 +73,21 @@ namespace GestaoProdutosAG.SqlAdapter
             {
                 try
                 {
+                    var productUpdate = GetByCode(product.Code);
+
+                    productUpdate.Description = product.Description;
+                    productUpdate.Status = product.Status;
+                    productUpdate.ManufacturingDate = product.ManufacturingDate;
+                    productUpdate.ExpirationDate = product.ExpirationDate;
+                    productUpdate.VendorCode = product.VendorCode;
+                    productUpdate.VendorDescription = product.VendorDescription;
+                    productUpdate.VendorCNPJ = product.VendorCNPJ;
+
+
                     _context.Products.Update(product);
                     _context.SaveChanges();
+
+                    transaction.Commit();
 
                     return product;
                 }
@@ -92,7 +106,7 @@ namespace GestaoProdutosAG.SqlAdapter
                 try
                 {
                     _context.Database.ExecuteSqlRaw($@"
-                            UPDATE Product
+                            UPDATE Products
                                 SET Status = 0
                             WHERE Code = {code}");
 
