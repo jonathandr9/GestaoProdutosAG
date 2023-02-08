@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace GestaoProdutosAG.SqlAdapter
 {
-    public class ProductDbAdapter : IProductDbAdapter
+    public class ProductRepository : IProductRepository
     {
         private readonly ProductManagementContext _context;
-        public ProductDbAdapter(ProductManagementContext context)
+        public ProductRepository(ProductManagementContext context)
         {
             _context = context;
         }

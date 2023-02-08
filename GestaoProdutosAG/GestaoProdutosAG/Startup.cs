@@ -1,6 +1,9 @@
 using GestaoProdutosAG.API;
+using GestaoProdutosAG.Application;
 using GestaoProdutosAG.DbAdapter.Configuration;
-using GestaoProdutosAG.IoC;
+using GestaoProdutosAG.Domain.Adapters;
+using GestaoProdutosAG.Domain.Services;
+using GestaoProdutosAG.SqlAdapter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,10 +32,10 @@ namespace GestaoProdutosAG
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GestaoProdutosAG", Version = "v1" });
             });
 
-            services.AddDbContext<ProductManagementContext>(opt => opt.UseSqlite("app.db"));
+            services.AddDbContext<ProductManagementContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("SqliteConnection")));
             services.AddAutoMapper(typeof(Startup), typeof(ApiMapperProfile));
-            ApplicationDependencyInjection.RegisterServices(services);
-            AdaptersDependencyInjection.RegisterServices(services);
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         

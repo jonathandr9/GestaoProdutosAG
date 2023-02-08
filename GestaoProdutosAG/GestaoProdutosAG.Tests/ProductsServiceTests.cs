@@ -12,10 +12,10 @@ namespace GestaoProdutosAG.Tests
 {
     public class ProductsServiceTests
     {
-        private readonly Mock<IProductDbAdapter> _productDbAdapterMock;
+        private readonly Mock<IProductRepository> _productDbAdapterMock;
         public ProductsServiceTests()
         {
-            _productDbAdapterMock = new Mock<IProductDbAdapter>();
+            _productDbAdapterMock = new Mock<IProductRepository>();
         }
 
 

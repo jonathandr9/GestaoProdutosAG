@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GestaoProdutosAG.IoC\GestaoProdutosAG.IoC.csproj" />
+    <ProjectReference Include="..\GestaoProdutosAG.Domain\GestaoProdutosAG.Domain.csproj" />
     <ProjectReference Include="..\GestaoProdutosAG.SqlAdapter\GestaoProdutosAG.DbAdapter.csproj" />
   </ItemGroup>
 

@@ -8,9 +8,9 @@ namespace GestaoProdutosAG.Application
 {
     public class ProductService : IProductService
     {
-        private readonly IProductDbAdapter _productDbAdapter;
+        private readonly IProductRepository _productDbAdapter;
 
-        public ProductService(IProductDbAdapter productDbAdapter)
+        public ProductService(IProductRepository productDbAdapter)
         {
             _productDbAdapter = productDbAdapter;
         }

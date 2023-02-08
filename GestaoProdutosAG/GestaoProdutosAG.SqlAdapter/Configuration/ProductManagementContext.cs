@@ -1,29 +1,23 @@
 ﻿using GestaoProdutosAG.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace GestaoProdutosAG.DbAdapter.Configuration
 {
     public class ProductManagementContext : DbContext
     {
-        public ProductManagementContext() : base()
-        {
-
-        }
-
-        public ProductManagementContext(DbContextOptions<ProductManagementContext> options)
+        private readonly IConfiguration _configuration;
+        public ProductManagementContext(DbContextOptions<ProductManagementContext> options,
+            IConfiguration configuration)
            : base(options)
         {
+            _configuration = configuration;
         }
 
         public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder) =>
-            optionsBuilder.UseSqlite("DataSource=app.db;Cache=Shared");
+            optionsBuilder.UseSqlite(_configuration.GetConnectionString("SqliteConnection"));
     }
 }

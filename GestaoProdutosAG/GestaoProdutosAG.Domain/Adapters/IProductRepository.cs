@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GestaoProdutosAG.Domain.Adapters
 {
-    public interface IProductDbAdapter
+    public interface IProductRepository
     {
         Product GetByCode(int code);
         Product Add(Product product);
